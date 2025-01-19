@@ -1,12 +1,14 @@
 import './App.css'
-const App = (props) => {
-    const { notes } = props
-    return (
+import Courses from './components/Courses'
+const App = () => {
+    return(
         <div>
-
+            <Courses/>
         </div>
     )
 }
 
+
 export default App
+
 

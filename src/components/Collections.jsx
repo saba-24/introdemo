@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import Note from "./Note";
+
+const Note = ({ note }) => <li> {note.content} </li>
 
 const Collections = ({ notes }) => {
     Collections.propTypes = {
