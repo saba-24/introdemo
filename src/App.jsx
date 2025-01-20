@@ -1,9 +1,9 @@
 import './App.css'
-import Courses from './components/Courses'
+import Submit from './components/Plates.jsx'
 const App = () => {
     return(
         <div>
-            <Courses/>
+            <Submit/>
         </div>
     )
 }

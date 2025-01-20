@@ -30,3 +30,8 @@ body{
     background-image: -webkit-linear-gradient(0deg, #000000, #112111);
 }
 
+input{
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 0 solid rgba(255, 255, 255, 0.6);
+  border-radius: 3px;
+}
