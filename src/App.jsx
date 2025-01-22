@@ -1,9 +1,9 @@
 import './App.css'
-import Submit from './components/Plates.jsx'
+import Book from './components/Phone/Phonebook.jsx'
 const App = () => {
     return(
         <div>
-            <Submit/>
+            <Book/>
         </div>
     )
 }
