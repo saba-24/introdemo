@@ -9,7 +9,7 @@
   background-image: -webkit-linear-gradient(-45deg, #00d0ff, #00ff66);
 }
 h1{
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 0px solid rgba(255, 255, 255, 0.5);
   margin: 5px;
   border-radius: 10px;
   padding: 10px;

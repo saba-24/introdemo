@@ -1,9 +1,11 @@
 import './App.css'
-import Book from './components/Phone/Phonebook.jsx'
-const App = () => {
+import Collections from "./components/Collections.jsx";
+
+
+const App = (notes) => {
     return(
         <div>
-            <Book/>
+            <Collections notes={notes}/>
         </div>
     )
 }
