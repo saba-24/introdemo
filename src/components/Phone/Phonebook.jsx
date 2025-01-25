@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
+import axios from "axios";
 
 
 const Book = () => {
 
     const [persons, setPersons] = useState([
-        { name: 'Arto Hellas', number: '040-1234567' }
+
     ]);
     const [filter, setFilter] = useState('');
     const [newName, setNewName] = useState('');
@@ -15,6 +16,17 @@ const Book = () => {
         setFilter(event.target.value);
     }
 
+    const hook = () => {
+        console.log('getting...');
+            axios
+                .get('http://localhost:3001/persons')
+                .then((res) => {
+                    setPersons(res.data);
+                    console.log(persons);
+                })
+    }
+
+    useEffect(hook, []);
 
     const added = (name) => {
         added.propTypes = {

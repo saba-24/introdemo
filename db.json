@@ -14,6 +14,53 @@
       "id": "3",
       "content": "GET and POST are the most important methods of HTTP protocol",
       "important": true
+    },
+    {
+      "id": "4",
+      "content": "welcome to my note society",
+      "important": false
+    },
+    {
+      "id": "5",
+      "content": "welcome to my new note society",
+      "important": true
+    },
+    {
+      "id": "6",
+      "content": "test",
+      "important": false
+    },
+    {
+      "id": "7",
+      "content": "donkey kong",
+      "important": false
+    },
+    {
+      "id": "8",
+      "content": "diddy kong",
+      "important": false
+    }
+  ],
+  "persons": [
+    {
+      "name": "Arto Hellas",
+      "number": "040-123456",
+      "id": "1"
+    },
+    {
+      "name": "Ada Lovelace",
+      "number": "39-44-5323523",
+      "id": "2"
+    },
+    {
+      "name": "Dan Abramov",
+      "number": "12-43-234345",
+      "id": "3"
+    },
+    {
+      "name": "Mary Poppendieck",
+      "number": "39-23-6423122",
+      "id": "4"
     }
   ]
 }
