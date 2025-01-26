@@ -32,8 +32,11 @@ const Book = () => {
             name: String
         }
         for (let j of persons) {
-            if (name === j.name) {
-                return true;
+            if (name.toLowerCase() === j.name.toLowerCase()) {
+                return {
+                    added: true,
+                    id: j.id,
+                };
             }
 
         }
@@ -42,10 +45,24 @@ const Book = () => {
 
     const handleAdd = (event) => {
         event.preventDefault();
+
         const z =
             {name: newName, number: newNum, id: (1 + parseInt(persons[persons.length - 1].id)).toString()};
-        added(newName)
-            ? window.alert(newName)
+        added(newName).added
+            ? window.confirm(`${newName} already in book, replace number?`)
+                ?axios.put(`http://localhost:3001/persons/${added(newName).id}`,
+                    {
+                        id: added(newName).id,
+                        name: newName,
+                        number: newNum
+                    }
+                )
+                    .then((res) => {
+                        setPersons(persons.map(
+                            person => person.name === res.data.name ? res.data : person
+                            ))
+                    })
+            :null
             : phoneService
                 .send(z)
                 .then((res) => {
