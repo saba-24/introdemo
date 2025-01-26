@@ -1,12 +1,10 @@
 import {useEffect, useState} from 'react'
-import axios from "axios";
-
+import axios from "axios"
+import phoneService from './services/phone.js'
 
 const Book = () => {
 
-    const [persons, setPersons] = useState([
-
-    ]);
+    const [persons, setPersons] = useState([]);
     const [filter, setFilter] = useState('');
     const [newName, setNewName] = useState('');
     const [newNum, setNewNum] = useState('');
@@ -16,17 +14,18 @@ const Book = () => {
         setFilter(event.target.value);
     }
 
-    const hook = () => {
-        console.log('getting...');
-            axios
-                .get('http://localhost:3001/persons')
+    useEffect(() =>
+        {
+            console.log('getting...');
+            phoneService
+                .getAll()
                 .then((res) => {
-                    setPersons(res.data);
-                    console.log(persons);
+                    Array.isArray(res)
+                    ? setPersons(res)
+                        : null
                 })
-    }
+        }, []);
 
-    useEffect(hook, []);
 
     const added = (name) => {
         added.propTypes = {
@@ -34,7 +33,6 @@ const Book = () => {
         }
         for (let j of persons) {
             if (name === j.name) {
-                window.alert(`${name} is already added to the book`);
                 return true;
             }
 
@@ -44,14 +42,33 @@ const Book = () => {
 
     const handleAdd = (event) => {
         event.preventDefault();
-        const z = persons.concat(
-            {name: newName, number: newNum},
-        )
+        const z =
+            {name: newName, number: newNum, id: (1 + parseInt(persons[persons.length - 1].id)).toString()};
         added(newName)
-            ? setPersons([...persons])
-            : setPersons([...z])
+            ? window.alert(newName)
+            : phoneService
+                .send(z)
+                .then((res) => {
+                    setPersons(persons.concat(res));
+                })
+    }
 
-
+    const handleRemoveOf = (id) => {
+        const i = parseInt(id)
+        const url = 'http://localhost:3001'
+        if(window.confirm('Are you sure you want to delete?')) {
+        axios
+            //.delete(`${url}/${id}`)
+            .delete(`${url}/persons/${i}`)
+            .then(res => {
+                setPersons(
+                    persons.filter(person => person.id !== res.data.id)
+                )
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        }
     }
 
     const handlePhone = (event) => {
@@ -64,22 +81,30 @@ const Book = () => {
         setNewNum(event.target.value);
     }
 
+    const ListElem = ({ person, handleRemove }) => {
+        return (
+            <li>
+                {person.name} {person.number}
+                <button onClick={handleRemove}>delete</button>
+            </li>
+        )
+    }
+
     const List = () => {
         const search = new RegExp(filter, 'i');
         return(
             <div>
                 <ul >
                     {persons.map(person =>
-                        person.name.match(search)
-                        ?<li key={person.name}>
-                            {person.name} {person.number}
-                        </li>
-                    :' '
+                            person.name.match(search)
+                                ? <ListElem person={person} key={person.id} handleRemove={() =>
+                                    handleRemoveOf(person.id)
+                                }/>
+                                : '  '
                     )}
                 </ul>
             </div>
         )
-
     }
 
     return (

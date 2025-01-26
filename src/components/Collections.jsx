@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react'
-import PropTypes, {object} from "prop-types";
 import noteService from './services/notes.js'
 
 const Note = ({note, toggleImportance}) =>{

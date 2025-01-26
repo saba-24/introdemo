@@ -1,11 +1,11 @@
 import './App.css'
 import Collections from "./components/Collections.jsx";
+import Book from "./components/Phonebook.jsx";
 
-
-const App = (notes) => {
+const App = () => {
     return(
         <div>
-            <Collections notes={notes}/>
+            <Book/>
         </div>
     )
 }
